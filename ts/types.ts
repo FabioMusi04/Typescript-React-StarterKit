@@ -5,14 +5,6 @@ interface User {
     token: string;
 }
 
-interface ConfigurationFormData {
-    smtpServer: string;
-    port: string;
-    supportEmail: string;
-    notificationEmail: string;
-    notificationEmailPassword: string;
-};
-
 interface AlertProps {
     message: string;
     type: 'success' | 'error' | 'warning';
