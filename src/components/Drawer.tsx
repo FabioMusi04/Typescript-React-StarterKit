@@ -40,6 +40,7 @@ const Drawer: React.FC = () => {
                 <div className="mt-4">
                     <h2 className="text-md px-4">Main Menu</h2>
                     <ul className="mt-3 space-y-5">
+<<<<<<< HEAD
                         <li onClick={() => onMenuItemClick('dashboard')} className="flex items-center px-4 py-2 hover:text-primary cursor-pointer">
                             <MdDashboard size={24} className="mr-2 text-green-400" />
                             <span className="font-semibold">Dashboard</span>
@@ -55,6 +56,31 @@ const Drawer: React.FC = () => {
                         <li onClick={() => navigate('/')} className="flex items-center px-4 py-2 hover:text-primary cursor-pointer"> 
                             <FaBars size={24} className="mr-2 text-green-400" />
                             <span className="font-semibold">Go Back</span>
+=======
+                        <li className="flex items-center px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
+                            <MdOutlineSpaceDashboard className="h-6 w-6 mr-2" />
+                            <span className="font-semibold">Dashboard</span>
+                        </li>
+                        <li className="flex items-center px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
+                            <RiShoppingCart2Line className="h-6 w-6 mr-2" />
+                            <span className="font-semibold">Orders</span>
+                        </li>
+                        <li className="flex items-center px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
+                            <IoCalculatorOutline className="h-6 w-6 mr-2" />
+                            <span className="font-semibold">Financial Management</span>
+                        </li>
+                        <li className="flex items-center px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
+                            <MdOutlineInventory className="h-6 w-6 mr-2" />
+                            <span className="font-semibold">Inventory</span>
+                        </li>
+                        <li className="flex items-center px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
+                            <IoPeopleCircleOutline className="h-6 w-6 mr-2" />
+                            <span className="font-semibold">Human Resources Management</span>
+                        </li>
+                        <li className="flex items-center px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer">
+                            <GoGraph className="h-6 w-6 mr-2" />
+                            <span className="font-semibold">Forecast</span>
+>>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
                         </li>
                     </ul>
                 </div>

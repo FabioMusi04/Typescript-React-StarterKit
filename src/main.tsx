@@ -58,4 +58,8 @@ const App: React.FC = () => {
   );
 };
 
+<<<<<<< HEAD
 createRoot(document.getElementById("root")!).render(<App />);
+=======
+createRoot(document.getElementById('root')!).render(<App />);
+>>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810

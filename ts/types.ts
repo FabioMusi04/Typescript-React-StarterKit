@@ -36,6 +36,7 @@ interface IAlertProps {
     onClose: () => void;
 }
 
+<<<<<<< HEAD
 interface INotification {
     id: string;
     title: string;
@@ -44,6 +45,8 @@ interface INotification {
     isRead: boolean;
 }
 
+=======
+>>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
 const Days = [
     "Sunday",
     "Monday",
@@ -69,6 +72,7 @@ const Months = [
     "December"
 ];
 
+<<<<<<< HEAD
 const Cities = [
     "London",
     "Paris",
@@ -106,3 +110,8 @@ const Cities = [
 export type { IUser, IAlertProps, INotification, IBackOfficeSection };
 
 export { Days, Months, Cities };
+=======
+export type { User, AlertProps };
+
+export { Days, Months };
+>>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
