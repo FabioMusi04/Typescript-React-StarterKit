@@ -38,53 +38,22 @@ const Notification: React.FC = () => {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
-<<<<<<< HEAD
-=======
-  const notifications = [{
-    id: 1,
-    profilePic: profilePic,
-    title: "Notification title",
-    sentDate: new Date(),
-    isRead: false
-  },
-  {
-    id: 2,
-    profilePic: profilePic,
-    title: "Notification title2",
-    sentDate: yesterday,
-    isRead: true
-  }
-  ];
-
->>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
   return (
     <>
       <div className="flex h-screen">
         <Drawer />
 
-<<<<<<< HEAD
         <div className="flex-grow bg-primary dark:bg-gray-900 p-6">
           <Navbar pageName={pageName} />
 
           <div className="w-full bg-secondary dark:bg-gray-800 shadow-md px-6 py-4 flex justify-between items-center rounded mt-5">
             <p className="text-xl font-semibold text-secondary dark:text-gray-200">Notifications: ({notifications?.filter(
-=======
-        <div className="flex-grow bg-gray-100 dark:bg-gray-900 p-6">
-          <Navbar pageName={pageName} />
-
-          <div className="w-full bg-white dark:bg-gray-800 shadow-md px-6 py-4 flex justify-between items-center rounded mt-5">
-            <p className="text-xl font-semibold text-gray-800 dark:text-gray-200">Notifications: ({notifications?.filter(
->>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
               (notification) => !notification.isRead
             ).length}) unread</p>
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md">Mark all as read</button>
           </div>
 
-<<<<<<< HEAD
           <div className="w-full bg-secondary dark:bg-gray-800 shadow-md px-6 py-4 justify-between items-center rounded mt-5">
-=======
-          <div className="w-full bg-white dark:bg-gray-800 shadow-md px-6 py-4 justify-between items-center rounded mt-5">
->>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
             {(() => {
               const groupedNotifications = notifications.reduce((acc, notification) => {
                 const now = new Date();
@@ -108,32 +77,18 @@ const Notification: React.FC = () => {
               return Object.entries(groupedNotifications).map(([group, notifications]) => (
                 <div key={group}>
                   <div className="flex justify-between items-center mt-4">
-<<<<<<< HEAD
                     <h2 className="text-lg font-semibold text-secondary dark:text-gray-200">{group}</h2>
                     <div className="flex items-center space-x-2">
                       <input type="checkbox" className="h-4 w-4 rounded-md border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500" />
                       <p className="text-secondary dark:text-gray-200">Select all</p>
-=======
-                    <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">{group}</h2>
-                    <div className="flex items-center space-x-2">
-                      <input type="checkbox" className="h-4 w-4 rounded-md border-gray-300 text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-500" />
-                      <p className="text-gray-800 dark:text-gray-200">Select all</p>
->>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
                     </div>
                   </div>
 
                   {notifications.map((notification) => (
                     <div key={notification.id} className={`flex items-center space-x-4 py-4 border-b border-gray-200 dark:border-gray-700 rounded px-5 ${!notification.isRead ? 'bg-blue-950' : ''}`}>
-<<<<<<< HEAD
                       <div className="flex-grow">
                         <p className="text-secondary dark:text-gray-200">{notification.title}</p>
                         <p className="text-secondary dark:text-gray-400">
-=======
-                      <img src={notification.profilePic} alt="Profile" className="h-10 w-10 rounded-full object-cover" />
-                      <div className="flex-grow">
-                        <p className="text-gray-800 dark:text-gray-200">{notification.title}</p>
-                        <p className="text-gray-500 dark:text-gray-400">
->>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
                           {(() => {
                             const now = new Date().getTime();
                             const sentTime = notification.sentDate.getTime();
@@ -156,19 +111,11 @@ const Notification: React.FC = () => {
                         notificationMenuRefs.current.push(ref);
                       }}>
                         {openMenuIndex === notification.id && (
-<<<<<<< HEAD
                           <div className="absolute right-0 mt-2 w-48 bg-secondary dark:bg-gray-700 rounded-md shadow-lg z-10">
                             <ul className="py-1">
                               <li className="px-4 py-2 text-secondary dark:text-gray-200 hover:bg-primary dark:hover:bg-gray-600 cursor-pointer">Mark as read</li>
                               <li className="px-4 py-2 text-secondary dark:text-gray-200 hover:bg-primary dark:hover:bg-gray-600 cursor-pointer">Delete</li>
                               <li className="px-4 py-2 text-secondary dark:text-gray-200 hover:bg-primary dark:hover:bg-gray-600 cursor-pointer">Select</li>
-=======
-                          <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg z-10">
-                            <ul className="py-1">
-                              <li className="px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer">Mark as read</li>
-                              <li className="px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer">Delete</li>
-                              <li className="px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer">Select</li>
->>>>>>> 807d2050a11ee797d5c512895f4476bdd24c4810
                             </ul>
                           </div>
                         )}
