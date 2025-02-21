@@ -42,7 +42,7 @@ const Alert: React.FC<IAlertProps> = ({ message, type, onClose }) => {
 
   return (
     <div
-      className={`fixed bottom-4 right-4 z-50 bg-secondary dark:bg-secondary p-4 rounded-md shadow-md cursor-pointer transition-opacity duration-300 
+      className={`fixed bottom-4 right-4 z-50 bg-third dark:bg-third p-4 rounded-md shadow-md cursor-pointer transition-opacity duration-300 
             ${visible ? "opacity-100" : "opacity-0"} ${
         message ? "block" : "hidden"
       }`}
@@ -52,12 +52,16 @@ const Alert: React.FC<IAlertProps> = ({ message, type, onClose }) => {
           className={`text-xl font-semibold mb-2 ${
             type === AlertTypeEnum.SUCCESS
               ? "text-green-600 dark:text-green-400"
-              : "text-secondary dark:text-gray-200"
+              : type === AlertTypeEnum.ERROR
+              ? "text-red-900 dark:text-red-900"
+              : type === AlertTypeEnum.WARNING
+              ? "text-yellow-600 dark:text-yellow-400"
+              : "text-gray-600 dark:text-gray-400"
           }`}
         >
           {type === AlertTypeEnum.SUCCESS ? "Congratulations!" : "Alert"}
         </p>
-        <p className="text-md text-secondary dark:text-gray-300 text-center">
+        <p className="text-md text-secondary dark:text-secondary text-center">
           {message}
         </p>
         <div className="w-full h-2 bg-gray-200 dark:bg-gray-700 mt-2">

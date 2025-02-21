@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import logo from '../assets/icon.png';
 import sideImage from '../assets/icon.png';
 import { useNavigate } from 'react-router-dom';
+import Alert from './Alert';
+import { AlertTypeEnum, IAlertProps } from '../../ts/types';
 
 const PasswordReset: React.FC = () => {
     const navigate = useNavigate();
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [alert, setAlert] = useState<IAlertProps>({
+        message: '',
+        type: AlertTypeEnum.SUCCESS,
+        onClose: () => { },
+    })
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,6 +41,7 @@ const PasswordReset: React.FC = () => {
 
     return (
         <div className="flex items-center justify-center grow bg-primary dark:bg-gray-900 h-screen">
+            <Alert {...alert} />
             <div className="flex flex-col md:flex-row w-full h-full bg-secondary dark:bg-gray-800 shadow-md">
                 <div className="w-full md:w-1/2 p-10 space-y-8 flex flex-col justify-center items-center">
                     <div className="w-full max-w-xl">

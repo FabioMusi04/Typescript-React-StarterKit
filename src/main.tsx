@@ -15,6 +15,7 @@ import { Provider } from "react-redux";
 import Home from "./pages/Home";
 import DetailsPage from "./pages/DetailsPage";
 import NotFound from "./components/404";
+import Register from "./components/Register";
 
 const App: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                   }
                 />
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/reset-password" element={<PasswordReset />} />
                 <Route
                   path="/dashboard"
