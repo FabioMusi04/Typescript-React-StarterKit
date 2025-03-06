@@ -16,6 +16,7 @@ import Home from "./pages/Home";
 import DetailsPage from "./pages/DetailsPage";
 import NotFound from "./components/404";
 import Register from "./components/Register";
+import Account from "./pages/Account";
 
 const App: React.FC = () => {
   return (
@@ -37,6 +38,14 @@ const App: React.FC = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/reset-password" element={<PasswordReset />} />
+                <Route
+                  path="/account/me"
+                  element={
+                    <PrivateRoute>
+                      <Account />
+                    </PrivateRoute>
+                  }
+                />
                 <Route
                   path="/dashboard"
                   element={

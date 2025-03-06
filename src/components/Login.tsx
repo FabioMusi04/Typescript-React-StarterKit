@@ -39,10 +39,12 @@ const Login: React.FC = () => {
           onClose: () =>
             setAlert({ message: "", type: "success", onClose: () => {} }),
         });
+        
+        setUser(result.data.user);
+        setToken(result.data.token);
+
         if (result.data.user.role === UserRolesEnum.ADMIN) {
           navigate("/dashboard");
-          setUser(result.data.user);
-          setToken(result.data.token);
         } else {
           navigate("/");
         }
