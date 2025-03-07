@@ -18,8 +18,8 @@ const Drawer: React.FC = () => {
     };
 
     const onMenuItemClick = (route: string) => {
-        console.log(`Navigating to ${route}`);
-        navigate('/dashboard?tab=' + route);
+        console.log(`Navigating to ${route.toLowerCase()}`);
+        navigate('/dashboard?tab=' + route.toLowerCase());
     };
 
     return (

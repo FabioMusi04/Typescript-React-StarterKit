@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
 
   const renderContent = () => {
     switch (currentTab) {
-      case 'Users':
+      case 'users':
         return <Table type="users" initialData={[]} ignoreFields={['password', 'salt', 'socialProviders, __v']} setAlert={setAlert} />;
       case 'dashboard':
       default:

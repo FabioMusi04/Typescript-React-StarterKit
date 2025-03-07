@@ -36,7 +36,6 @@ const Account = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axiosInstance.get("/users/me");
-      console.log(data);
       setUserInfo({
         username: data.username,
         email: data.email,
@@ -57,9 +56,52 @@ const Account = () => {
     });
   };
 
-  const handleUserInfoSubmit = (e: React.FormEvent) => {
+  const handleUserInfoSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Submit user info changes to API
+
+    if (
+      userInfo.username === "" ||
+      userInfo.firstName === "" ||
+      userInfo.lastName === ""
+    ) {
+      setAlert({
+        message: "Please fill in all fields",
+        type: AlertTypeEnum.ERROR,
+        onClose: () =>
+          setAlert({
+            ...alert,
+            message: "",
+          }),
+      });
+      return;
+    }
+    
+    axiosInstance
+    .put("/users/me", {
+      username: userInfo.username,
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+    }).then(() => {
+      setAlert({
+        message: "User info updated successfully",
+        type: AlertTypeEnum.SUCCESS,
+        onClose: () =>
+          setAlert({
+            ...alert,
+            message: "",
+          }),
+      });
+    }).catch((err) => {
+      setAlert({
+        message: err.response.data.message,
+        type: AlertTypeEnum.ERROR,
+        onClose: () =>
+          setAlert({
+            ...alert,
+            message: "",
+          }),
+      });
+    });
   };
 
   const handlePasswordSubmit = (
@@ -172,19 +214,9 @@ const Account = () => {
             <label className="block text-sm font-medium text-secondary">
               Email
             </label>
-            {isEditMode ? (
-              <input
-                type="email"
-                name="email"
-                value={userInfo.email}
-                onChange={handleUserInfoChange}
-                className="mt-1 block w-full p-2  rounded-md"
-              />
-            ) : (
-              <p className="mt-1 block w-full p-2  rounded-md">
-                {userInfo.email}
-              </p>
-            )}
+            <p className="mt-1 block w-full p-2  rounded-md">
+              {userInfo.email}
+            </p>
           </div>
           <div className="mb-2">
             <label className="block text-sm font-medium text-secondary">
@@ -250,7 +282,7 @@ const Account = () => {
                 handlePasswordSubmit(currentPassword, newPassword),
             })
           }
-          className="px-4 py-2 bg-secondary text-white rounded-md mt-4"
+          className="px-4 py-2 bg-secondary text-white rounded-md mt-4 mb-12"
         >
           Change Password
         </button>

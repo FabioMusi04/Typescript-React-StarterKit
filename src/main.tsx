@@ -17,6 +17,7 @@ import DetailsPage from "./pages/DetailsPage";
 import NotFound from "./components/404";
 import Register from "./components/Register";
 import Account from "./pages/Account";
+import Settings from "./pages/Settings";
 
 const App: React.FC = () => {
   return (
@@ -38,8 +39,9 @@ const App: React.FC = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/reset-password" element={<PasswordReset />} />
+                <Route path="/settings" element={<Settings />} />
                 <Route
-                  path="/account/me"
+                  path="/account"
                   element={
                     <PrivateRoute>
                       <Account />

@@ -116,8 +116,8 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
 
                     {showSettingsMenu && (
                         <div className="absolute right-0 mt-2 w-48 bg-secondary rounded-md shadow-lg py-2">
-                            <a href="/account/me" className="block px-4 py-2 text-third hover:text-primary">Profile</a>
-                            <a href="#" className="block px-4 py-2 text-third hover:text-primary">Settings</a>
+                            <a href="/account" className="block px-4 py-2 text-third hover:text-primary">Profile</a>
+                            <a href="/settings" className="block px-4 py-2 text-third hover:text-primary">Settings</a>
                             <a className="block px-4 py-2 text-third hover:text-primary" onClick={logout}>Logout</a>
                         </div>
                     )}
