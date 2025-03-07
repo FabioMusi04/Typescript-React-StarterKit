@@ -1,9 +1,9 @@
 import { ReactNode, useEffect, useState } from "react";
-import axiosInstance from "../../ts/axiosInstance";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { AlertTypeEnum, BackOfficeSections } from "../../ts/types";
+
+import axiosInstance from "../../ts/axiosInstance";
 import Loading from "./Loading";
-import { BackOfficeSections } from "../../ts/types";
-import { JSX } from "react/jsx-runtime";
 
 interface PaginationState {
   currentPage: number;
@@ -15,8 +15,9 @@ interface TableProps<T> {
   type?: keyof typeof BackOfficeSections;
   ignoreFields?: string[];
   setAlert?: (alert: {
+    hasConfirm?: boolean;
     message: string;
-    type: "success" | "error";
+    type: "success" | "error" | "warning";
     onClose: () => void;
   }) => void;
 }
@@ -38,10 +39,46 @@ export const Table = <T extends object>({
 
   const [editModal, setEditModal] = useState({
     isOpen: false,
-    initialData: {},
-    onSave: () => {},
-    onClose: () => {},
+    initialData: {} as T,
+    onSave: (updatedData: T) => {
+      setData((prevData) =>
+        prevData.map((item) =>
+          item === editModal.initialData ? updatedData : item
+        )
+      );
+    },
+    onClose: () => setEditModal((prev) => ({ ...prev, isOpen: false })),
   });
+
+  const showDeleteConfirmation = (id: string) => {
+    if (setAlert) {
+      setAlert({
+        hasConfirm: true,
+        message: "Are you sure you want to delete this item?",
+        type: AlertTypeEnum.WARNING,
+        onClose: () => {
+          axiosInstance
+            .delete(`/${type}/${id}`)
+            .then(() => {
+              setData(data.filter((item) => item !== data[0]));
+              setAlert({
+                message: "Item deleted successfully",
+                type: "success",
+                onClose: () => {},
+              });
+            })
+            .catch((error) => {
+              setAlert({
+                message: (error as Error).message,
+                type: AlertTypeEnum.ERROR,
+                onClose: () =>
+                  setAlert({ message: "", type: "success", onClose: () => {} }),
+              });
+            });
+        },
+      });
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -188,15 +225,15 @@ export const Table = <T extends object>({
                                 .toLocaleLowerCase()
                                 .includes(ext)
                             ) {
-                                displayValue = (
+                              displayValue = (
                                 <div className="flex justify-center">
                                   <img
-                                  src={displayValue.toString()}
-                                  alt="Image"
-                                  className="w-10 h-10 object-cover rounded-full"
+                                    src={displayValue.toString()}
+                                    alt="Image"
+                                    className="w-10 h-10 object-cover rounded-full"
                                   />
                                 </div>
-                                );
+                              );
                               break;
                             }
                           }
@@ -214,15 +251,31 @@ export const Table = <T extends object>({
                           setEditModal({
                             isOpen: true,
                             initialData: item,
-                            onSave: () => console.log(data),
+                            onSave: (updatedData: T) => {
+                              setData((prevData) =>
+                                prevData.map((dataItem) =>
+                                  dataItem === item ? updatedData : dataItem
+                                )
+                              );
+                              setEditModal((prev) => ({
+                                ...prev,
+                                isOpen: false,
+                              }));
+                            },
                             onClose: () =>
-                              setEditModal({ ...editModal, isOpen: false }),
+                              setEditModal((prev) => ({
+                                ...prev,
+                                isOpen: false,
+                              })),
                           });
                         }}
                       >
                         <FaEdit />
                       </button>
-                      <button className="text-red-500 hover:text-red-700">
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => showDeleteConfirmation(item._id)}
+                      >
                         <FaTrash />
                       </button>
                     </div>

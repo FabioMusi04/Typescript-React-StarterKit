@@ -11,6 +11,7 @@ const Dashboard: React.FC = () => {
   const currentTab = searchParams.get('tab') || 'dashboard';
 
   const [alert, setAlert] = useState<IAlertProps>({
+    hasConfirm: false,
     message: '',
     type: 'success',
     onClose: () => { },

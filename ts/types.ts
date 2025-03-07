@@ -31,6 +31,7 @@ export const BackOfficeSections: Record<string, IBackOfficeSection> = {
 }
 
 interface IAlertProps {
+    hasConfirm?: boolean;
     message: string;
     type: 'success' | 'error' | 'warning';
     onClose: () => void;
