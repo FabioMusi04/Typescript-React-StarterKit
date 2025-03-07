@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { IAlertProps, AlertTypeEnum } from "../../ts/types";
-import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Alert from "../components/Alert";
 import Navbar from "../components/Navbar";
@@ -32,14 +31,7 @@ const Account = () => {
     profilePicture: "",
   });
 
-  const [password, setPassword] = useState({
-    currentPassword: "",
-    newPassword: "",
-  });
-
   const [isEditMode, setIsEditMode] = useState(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {

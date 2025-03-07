@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="fixed bottom-0 w-full bg-secondary shadow-md px-6 py-4 flex justify-between items-center">
+    <footer className="bottom-0 w-full bg-secondary shadow-md px-6 py-4 flex justify-between items-center">
       <div className="text-primary">
         &copy; {new Date().getFullYear()} {import.meta.env.VITE_APP_NAME} - All Rights Reserved
       </div>
